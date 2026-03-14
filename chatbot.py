@@ -10,10 +10,27 @@ genai.configure(api_key=api_key)
 
 model = genai.GenerativeModel(model_name="gemini-3-flash-preview")
 
+user_input = input("anjali: ")
+response = model.generate_content(user_input)
+print("bot:", response.text)
+
+
+
+'''import google.generativeai as genai
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+api_key = os.getenv("GEMINI_API_KEY")
+
+genai.configure(api_key=api_key)
+
+model = genai.GenerativeModel(model_name="gemini-3-flash-preview")
+
 def add_numbers(a: float, b: float):
     return a + b
 
-# 2️⃣ Define the tools list
 tools = [
     {
         "functionDeclarations": [
@@ -47,5 +64,4 @@ while True:
             "tools": tools
         }
     )
-
-    print(response)
+    print(response)'''
