@@ -1,4 +1,4 @@
-import google.generativeai as genai
+from google import genai
 from dotenv import load_dotenv
 import os
 
@@ -6,15 +6,16 @@ load_dotenv()
 
 api_key = os.getenv("GEMINI_API_KEY")
 
-genai.configure(api_key=api_key)
-
-model = genai.GenerativeModel(model_name="gemini-3-flash-preview")
+client = genai.Client(api_key=api_key)
 
 user_input = input("anjali: ")
-response = model.generate_content(user_input)
+
+response = client.models.generate_content(
+    model="gemini-3-flash-preview",
+    contents=user_input
+)
+
 print("bot:", response.text)
-
-
 
 '''import google.generativeai as genai
 from dotenv import load_dotenv
