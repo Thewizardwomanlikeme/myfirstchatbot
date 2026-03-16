@@ -43,9 +43,9 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-api_key = st.secrets("GEMINI_API_KEY")
+api_key = st.secrets["GEMINI_API_KEY"]
 
-client = genai.Client(api_key=st.secrets["GEMINI_API_KEY"])
+client = genai.Client(api_key=api_key)
 
 user_input = st.chat_input("Nanna jothe matanadbeku anstide? (Type your message here...)")
 
