@@ -5,19 +5,49 @@ import os
 
 load_dotenv()
 
+page_bg = """
+<style>
+.stApp {
+background-image: url("https://i.pinimg.com/1200x/c0/ca/56/c0ca561dd91597af2ac2e5f4ba5f48b8.jpg");
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+}
+
+/* frosted glass container */
+.glass-box {
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(8px);
+    padding: 25px;
+    border-radius: 15px;
+    color: white;
+}
+
+</style>
+"""
+st.markdown(page_bg, unsafe_allow_html=True)
+
+
 st.set_page_config(
     page_title="Anjali du Pre Frontal Cortex",
     page_icon="🧘‍♂️"
 )
-st.title("Anjali du Pre Frontal Cortex")
-st.header("This is a simple chatbot built using Gemini API and Streamlit.")
-st.caption("This is fun, but I will be adding more features soon. Stay tuned!")
+
+st.markdown("""
+<div class="glass-box">
+    <h1 style="color: blue;">ⲯ﹍ⲯ﹍Thrupthiⲯ﹍ⲯ﹍</h1>
+    <h4 style="color: blue;">
+    This is Thrupthi, a mental wellness chatbot built using Gemini API and Streamlit.
+    <p>She is capable of speaking and understanding Romanized Kannada, and is designed to provide emotional support</p>
+    <p>and practical advice for various moods and situations. Try chatting with her about anything on your mind!</p> </h4>
+</div>
+""", unsafe_allow_html=True)
 
 api_key = os.getenv("GEMINI_API_KEY")
 
 client = genai.Client(api_key=api_key)
 
-user_input = st.text_input("you: ")
+user_input = st.chat_input("Nanna jothe matanadbeku anstide? (Type your message here...)")
 
 if user_input:
     response = client.models.generate_content(
@@ -138,5 +168,8 @@ if user_input:
         }
     )
 
-    st.write("my brain:", response.text)
-
+    st.markdown(f"""
+    <div class="glass-box">
+    <strong style="color: blue;">Thrupthi:{response.text}</strong> 
+    </div>
+    """, unsafe_allow_html=True)

@@ -1,3 +1,4 @@
 [theme]
-backgroundColor = "#a0cdd6"
-primaryColor = "#F63366"
+backgroundColor="aliceBlue"
+secondaryBackgroundColor="lavender"
+codeBackgroundColor="powderBlue"
