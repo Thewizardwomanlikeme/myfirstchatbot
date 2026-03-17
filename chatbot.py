@@ -1,9 +1,7 @@
 from google import genai
 import streamlit as st
-from dotenv import load_dotenv
-import os
-
-load_dotenv()
+from groq import Groq
+from openai import OpenAI
 
 page_bg = """
 <style>
@@ -43,7 +41,7 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-api_key = st.secrets["GEMINI_API_KEY"]
+api_key = st.secrets("GEMINI_API_KEY")
 
 client = genai.Client(api_key=api_key)
 
