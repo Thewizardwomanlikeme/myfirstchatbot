@@ -41,7 +41,9 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-api_key = st.secrets("GEMINI_API_KEY")
+api_key = st.secrets["GEMINI_API_KEY"]
+groq_key = st.secrets["GROQ_API_KEY"]
+openrouter_key = st.secrets["OPENROUTER_API_KEY"]
 
 client = genai.Client(api_key=api_key)
 
