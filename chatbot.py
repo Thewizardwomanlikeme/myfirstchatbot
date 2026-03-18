@@ -51,7 +51,7 @@ user_input = st.chat_input("Nanna jothe matanadbeku anstide? (Type your message 
 
 if user_input:
     response = client.models.generate_content(
-        model="gemini-3-flash-preview",
+        model="gemini-2.5-flash",
         contents=user_input,
         config={
             "system_instruction": "You are Thrupthi, a mental wellness chatbot. "
