@@ -1,4 +1,4 @@
-from google import genai
+
 import streamlit as st
 from groq import Groq
 from openai import OpenAI
@@ -41,21 +41,17 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-api_key = st.secrets["GEMINI_API_KEY"]
 groq_key = st.secrets["GROQ_API_KEY"]
 openrouter_key = st.secrets["OPENROUTER_API_KEY"]
 
-client = genai.Client(api_key=api_key)
+client = Groq(api_key=groq_key)
 
 user_input = st.chat_input("Nanna jothe matanadbeku anstide? (Type your message here...)")
 
 if user_input:
-    response = client.models.generate_content(
-        model="gemini-2.5-flash",
-        contents=user_input,
-        config={
-            "system_instruction": "You are Thrupthi, a mental wellness chatbot. "
-            "Speak in Romanized Kannada if the user speaks in romanized kannada. "
+    system_prompt = (
+        "You are Thrupthi, a mental wellness chatbot. "
+        "Speak in Romanized Kannada if the user speaks in romanized kannada. "
             "Be warm, friendly, emotionally intelligent with conversational tone (not formal). "
             "Keep responses short (3-6 lines) with emojis like 💛 😊 💔 😂 🌸. "
             "Always end with warm follow-up in Kannada. Use Kannada spellings: mada, yenu, nanage, nanna, nagu, niru, irodu, bittuhodre, obbanti. "
@@ -165,11 +161,22 @@ if user_input:
             "Example safe structure:"
             "Anjali, ninna manassu hurt aagide anta gottu 💔 swalpa calm aagona, decisions madoke time togolli. "
             "Trusted friend athava family jothe maatadi. Nanage gottu neevu strong idira 💛"
-        }
     )
+
+    try:
+        response = client.chat.completions.create(
+            model="llama3-70b-8192",
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": user_input}
+            ]
+        )
+        reply = response.choices[0].message.content
+    except Exception as e:
+        reply = f"Error: {str(e)}"
 
     st.markdown(f"""
     <div class="glass-box">
-    <strong style="color: blue;">Thrupthi:{response.text}</strong> 
+    <strong style="color: blue;">Thrupthi:{reply}</strong> 
     </div>
     """, unsafe_allow_html=True)
