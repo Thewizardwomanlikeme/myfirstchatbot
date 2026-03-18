@@ -35,7 +35,7 @@ st.markdown("""
 <div class="glass-box">
     <h1 style="color: blue;">ⲯ﹍ⲯ﹍Thrupthiⲯ﹍ⲯ﹍</h1>
     <h4 style="color: blue;">
-    This is Thrupthi, a mental wellness chatbot built using Gemini API and Streamlit.
+    This is Thrupthi, a mental wellness chatbot built using Groq API, Gemini API, OpenRouter API and Streamlit.
     <p>She is capable of speaking and understanding Romanized Kannada, and is designed to provide emotional support</p>
     <p>and practical advice for various moods and situations. Try chatting with her about anything on your mind!</p> </h4>
 </div>
