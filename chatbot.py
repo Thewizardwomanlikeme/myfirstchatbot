@@ -9,74 +9,11 @@ st.set_page_config(
     layout="centered"
 )
 
-page_bg = """
-<style>
-.stApp {
-    background-image: url("https://i.pinimg.com/1200x/c0/ca/56/c0ca561dd91597af2ac2e5f4ba5f48b8.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-}
+def load_css(file_name):
+    with open(file_name) as f:
+        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
-/* frosted glass container for headers */
-.glass-box {
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    padding: 25px;
-    border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: #1E3A8A;
-    text-align: center;
-    margin-bottom: 2rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.glass-box h1 {
-    color: #1e3a8a;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-}
-
-.glass-box h4 {
-    color: #3b82f6;
-    font-weight: 500;
-    line-height: 1.5;
-}
-
-/* Customizing the chat messages to stand out against the background */
-[data-testid="stChatMessage"] {
-    background: rgba(255, 255, 255, 0.65);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border-radius: 15px;
-    padding: 10px 15px;
-    margin-bottom: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-}
-
-[data-testid="stChatMessage"] p {
-    color: #1e293b;
-    font-size: 16px;
-}
-
-/* Make chat input more visible */
-[data-testid="stChatInput"] {
-    background: rgba(255, 255, 255, 0.85) !important;
-    border-radius: 15px !important;
-    backdrop-filter: blur(8px) !important;
-}
-
-/* Adjust colors for markdown specifically inside chat messages */
-[data-testid="stMarkdownContainer"] p {
-    color: #0f172a;
-}
-</style>
-"""
-
-st.markdown(page_bg, unsafe_allow_html=True)
+load_css("style.css")
 
 st.markdown("""
 <div class="glass-box">
